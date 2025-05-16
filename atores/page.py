@@ -1,7 +1,9 @@
+from datetime import datetime
+
 import pandas as pd
 import streamlit as st
-from datetime import datetime
 from st_aggrid import AgGrid
+
 from atores.service import AtorService
 
 
@@ -14,16 +16,12 @@ def mostrar_atores():
 
     # receba os dados como json e converte em data frame
     ator_df = pd.json_normalize(atores)
-    AgGrid(
-        data=ator_df,
-        reload_data=True,
-        key='atores'
-    )
+    AgGrid(data=ator_df, reload_data=True, key='atores')
 
     st.title('Adicionar Ator')
     name = st.text_input('Nome do Ator')
     nascimento = st.date_input(
-        label="Data de Nascimento",
+        label='Data de Nascimento',
         value=datetime.today(),
         min_value=datetime(1600, 1, 1).date(),
         max_value=datetime.today(),
@@ -44,4 +42,4 @@ def mostrar_atores():
         if novo_ator:
             st.rerun()
         else:
-            st.error("Erro ao cadastrar ator!")
+            st.error('Erro ao cadastrar ator!')

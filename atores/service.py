@@ -1,9 +1,9 @@
 import streamlit as st
+
 from atores.repository import AtorRepository
 
 
 class AtorService:
-
     def __init__(self):
         self.ator_repository = AtorRepository()
 

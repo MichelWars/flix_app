@@ -1,15 +1,14 @@
-import streamlit as st
 import requests
+import streamlit as st
+
 from login.service import logout
 
 
 class GenerosRepository:
     def __init__(self):
-        self.__base_url = "https://michelwars.pythonanywhere.com/api/v1/"
-        self.__generos_url = f"{self.__base_url}generos/"
-        self.__headers = {
-            'Authorization': f'Bearer {st.session_state.token}'
-        }
+        self.__base_url = 'https://michelwars.pythonanywhere.com/api/v1/'
+        self.__generos_url = f'{self.__base_url}generos/'
+        self.__headers = {'Authorization': f'Bearer {st.session_state.token}'}
 
     def get_generos(self):
         response = requests.get(
@@ -21,7 +20,9 @@ class GenerosRepository:
         if response.status_code == 401:
             logout()
             return None
-        raise Exception(f"Erro ao obter os dados da API. Status code: {response.status_code}")
+        raise Exception(
+            f'Erro ao obter os dados da API. Status code: {response.status_code}'
+        )
 
     def create_genero(self, genero):
         response = requests.post(
@@ -34,4 +35,6 @@ class GenerosRepository:
         if response.status_code == 401:
             logout()
             return None
-        raise Exception(f"Erro ao obter os dados da API. Status code: {response.status_code}")
+        raise Exception(
+            f'Erro ao obter os dados da API. Status code: {response.status_code}'
+        )

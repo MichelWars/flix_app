@@ -1,5 +1,6 @@
-import streamlit as st
 import plotly.express as px
+import streamlit as st
+
 from filmes.service import FilmeService
 
 
@@ -15,7 +16,7 @@ def show_home():
             filme_stats['movies_by_genre'],
             values='count',
             names='genero__nome',
-            title='Filmes por Genero'
+            title='Filmes por Genero',
         )
         st.plotly_chart(fig)
 

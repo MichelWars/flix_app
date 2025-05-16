@@ -1,15 +1,14 @@
 import requests
 import streamlit as st
+
 from login.service import logout
 
 
 class AtorRepository:
     def __init__(self):
-        self.__base_url = "https://michelwars.pythonanywhere.com/api/v1/"
-        self.__atores_url = f"{self.__base_url}atores/"
-        self.__headers = {
-            'Authorization': f'Bearer {st.session_state.token}'
-        }
+        self.__base_url = 'https://michelwars.pythonanywhere.com/api/v1/'
+        self.__atores_url = f'{self.__base_url}atores/'
+        self.__headers = {'Authorization': f'Bearer {st.session_state.token}'}
 
     def get_atores(self):
         response = requests.get(
@@ -21,7 +20,9 @@ class AtorRepository:
         if response.status_code == 401:
             logout()
             return None
-        raise Exception(f"Erro ao obter os dados da API. Status code: {response.status_code}")
+        raise Exception(
+            f'Erro ao obter os dados da API. Status code: {response.status_code}'
+        )
 
     def create_ator(self, ator):
         response = requests.post(
@@ -34,4 +35,6 @@ class AtorRepository:
         if response.status_code == 401:
             logout()
             return None
-        raise Exception(f"Erro ao obter os dados da API. Status code: {response.status_code}")
+        raise Exception(
+            f'Erro ao obter os dados da API. Status code: {response.status_code}'
+        )

@@ -1,15 +1,14 @@
-import streamlit as st
 import requests
+import streamlit as st
+
 from login.service import logout
 
 
 class FilmesRepository:
     def __init__(self):
-        self.__base_url = "https://michelwars.pythonanywhere.com/api/v1/"
-        self.__filmes_url = f"{self.__base_url}filmes/"
-        self.__headers = {
-            'Authorization': f'Bearer {st.session_state.token}'
-        }
+        self.__base_url = 'https://michelwars.pythonanywhere.com/api/v1/'
+        self.__filmes_url = f'{self.__base_url}filmes/'
+        self.__headers = {'Authorization': f'Bearer {st.session_state.token}'}
 
     def get_filmes(self):
         response = requests.get(
@@ -21,7 +20,9 @@ class FilmesRepository:
         if response.status_code == 401:
             logout()
             return None
-        raise Exception(f"Erro ao obter os dados da API. Status code: {response.status_code}")
+        raise Exception(
+            f'Erro ao obter os dados da API. Status code: {response.status_code}'
+        )
 
     def create_filme(self, filme):
         response = requests.post(
@@ -34,7 +35,9 @@ class FilmesRepository:
         if response.status_code == 401:
             logout()
             return None
-        raise Exception(f"Erro ao obter os dados da API. Status code: {response.status_code}")
+        raise Exception(
+            f'Erro ao obter os dados da API. Status code: {response.status_code}'
+        )
 
     def get_stats_filmes(self):
         response = requests.get(
@@ -46,4 +49,6 @@ class FilmesRepository:
         if response.status_code == 401:
             logout()
             return None
-        raise Exception(f"Erro ao obter os dados da API. Status code: {response.status_code}")
+        raise Exception(
+            f'Erro ao obter os dados da API. Status code: {response.status_code}'
+        )

@@ -1,8 +1,9 @@
 import pandas as pd
 import streamlit as st
+from st_aggrid import AgGrid
+
 from avaliacoes.service import AvaliacaoService
 from filmes.service import FilmeService
-from st_aggrid import AgGrid
 
 
 def mostrar_avaliacoes():
@@ -12,15 +13,11 @@ def mostrar_avaliacoes():
     if avaliacao:
         st.write('Avaliações')
         avaliacao_df = pd.json_normalize(avaliacao)
-        AgGrid(
-            data=avaliacao_df,
-            reload_data=True,
-            key='avaliacoes'
-        )
+        AgGrid(data=avaliacao_df, reload_data=True, key='avaliacoes')
     else:
-        st.warning("Nenhuma avaliação encontrada")
+        st.warning('Nenhuma avaliação encontrada')
 
-    st.title("Cadastrar avaliacao")
+    st.title('Cadastrar avaliacao')
 
     filme_service = FilmeService()
     filme = filme_service.get_filmes()
@@ -45,4 +42,4 @@ def mostrar_avaliacoes():
         if nova_avaliacao:
             st.rerun()
         else:
-            st.error("Erro ao avaliar")
+            st.error('Erro ao avaliar')

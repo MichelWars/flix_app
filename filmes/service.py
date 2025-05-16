@@ -1,9 +1,9 @@
 import streamlit as st
+
 from filmes.repository import FilmesRepository
 
 
 class FilmeService:
-
     def __init__(self):
         self.filme_repository = FilmesRepository()
 

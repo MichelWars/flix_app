@@ -1,9 +1,9 @@
 import streamlit as st
+
 from avaliacoes.repository import AvaliacoesRepository
 
 
 class AvaliacaoService:
-
     def __init__(self):
         self.avaliacao_repository = AvaliacoesRepository()
 

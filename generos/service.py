@@ -1,9 +1,9 @@
 import streamlit as st
+
 from generos.repository import GenerosRepository
 
 
 class GeneroService:
-
     def __init__(self):
         self.genero_repository = GenerosRepository()
 
@@ -15,9 +15,7 @@ class GeneroService:
         return generos
 
     def create_generos(self, nome):
-        genero = dict(
-            nome=nome
-        )
+        genero = dict(nome=nome)
         novo_genero = self.genero_repository.create_genero(genero)
         st.session_state.genero.append(novo_genero)
         return novo_genero

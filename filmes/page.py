@@ -1,9 +1,10 @@
 import pandas as pd
 import streamlit as st
 from st_aggrid import AgGrid
+
 from atores.service import AtorService
-from generos.service import GeneroService
 from filmes.service import FilmeService
+from generos.service import GeneroService
 
 
 def mostrar_filmes():
@@ -16,13 +17,9 @@ def mostrar_filmes():
         filmes_df = pd.json_normalize(filmes)
         filmes_df = filmes_df.drop(columns=['atores', 'genero.id', 'resumo'])
 
-        AgGrid(
-            data=filmes_df,
-            reload_data=True,
-            key='filmes'
-        )
+        AgGrid(data=filmes_df, reload_data=True, key='filmes')
     else:
-        st.warning("Nenhum filme encontrado")
+        st.warning('Nenhum filme encontrado')
 
     st.title('Adicionar filme')
     titulo = st.text_input('Nome do filme')
@@ -61,4 +58,4 @@ def mostrar_filmes():
             print(novo_filme)
             st.rerun()
         else:
-            st.error("Erro ao cadastrar filme")
+            st.error('Erro ao cadastrar filme')
